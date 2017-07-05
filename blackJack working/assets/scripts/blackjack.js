@@ -1,14 +1,11 @@
-
 var playerHand;
 var dealerHand;
 var gameRules;
 var newDeck;
 
 var Card = function(suit, number) {
-
   var suit = suit;
   var number = number;
-
   this.getNumber = function() {
     return number;
   };
@@ -164,77 +161,6 @@ var initilize = function() {
   gameRules.checkForEndGame();
 };
 
-var endGame = function() {
-
-  this.endGameBoolean = false; //changed to true if the game is over
-
-  this.setGameOver = function(){
-    this.endGameBoolean = true;
-  }
-
-  this.checkForEndGame = function() {
-    //This function is to check if any game ending conditions have been met and end the game if they have
-    if (playerHand.totalScore() >= 21) {
-      this.setGameOver();  //If player has less than or equal 21 and player has 5 cards, set endGameBoolean to true
-    } else if (playerHand.cardCount() >= 5) {
-      this.setGameOver(); //If player has over 21, set endGameBoolean to true
-    }
-    gameRules.gameResult();
-  };
-
-  this.gameResult = function(){
-    //This function checks if the endGameBoolean has been set to true and if it has,
-    //deal the dealer his remaining cards and then check scores with winner function
-    if(this.endGameBoolean === true){
-      // make second dealer card face up
-      $("#hit").off('click');
-      $("#stick").off('click')
-
-      while (dealerHand.totalScore() < 17 && dealerHand.cardCount() < 5 && playerHand.totalScore() <= 21) {
-        //var gameTable = $("#game-table");
-        var dNewCard = $("<div class='card'></div>");
-        var dHitCardIndex = newDeck.dealCard();
-        var dHitCard = dHitCardIndex.getName();
-        var dHitCardScore = dHitCardIndex.getValue();
-        dealerHand.addCard(dHitCardScore);
-        dNewCard.append('<img src="assets/images/' + dHitCard + '.png" width="130" height="180" />');
-        dNewCard.appendTo(dealers);
-        }
-      this.winner();
-    }
-    this.winner = function() {
-      //The function is to compare the score of the two hands and determine who won the game
-      var playerScore = playerHand.totalScore();
-      var dealerScore = dealerHand.totalScore();
-      this.outcome = "";
-      if (playerScore > 21 || dealerScore === 21) {
-        this.outcome = "You lose!";
-      }
-      else if (playerScore <= 21 && playerHand.cardCount() === 5) {
-        this.outcome = "5 card trick! You win!";
-      }
-      else if (dealerScore > 21 || playerScore === 21 || playerScore > dealerScore) {
-        this.outcome = "You win!"
-      }
-      else if (playerScore < dealerScore) {
-        this.outcome = "You lose!";
-      }
-      else if (playerScore === dealerScore) {
-        this.outcome = "It's a tie!";
-      }else{
-        this.outcome = "Thanks for playing";
-      }
-      $("#deal").on('click', function() {
-         location.reload();
-      });
-      $("#outcome").append(this.outcome);
-
-      //Then print the outcome to the page and disable hit and stand button.
-      //Player has to click deal to start the game again.
-    }
-  };
-}
-
 $(document).ready(function() {
 
   $("#deal").hover(function() {
@@ -272,3 +198,71 @@ $(document).ready(function() {
     gameRules.checkForEndGame();
   });
 });
+
+var endGame = function() {
+
+  this.endGameBoolean = false; //changed to true if the game is over
+
+  this.setGameOver = function(){
+    this.endGameBoolean = true;
+  }
+
+  this.checkForEndGame = function() {
+    //This function is to check if any game ending conditions have been met and end the game if they have
+    if (playerHand.totalScore() >= 21) {
+      this.setGameOver();  //If player has less than or equal 21 and player has 5 cards, set endGameBoolean to true
+    } else if (playerHand.cardCount() >= 5) {
+      this.setGameOver(); //If player has over 21, set endGameBoolean to true
+    }
+    gameRules.gameResult();
+  };
+
+  this.gameResult = function(){
+    //This function checks if the endGameBoolean has been set to true and if it has,
+    //deal the dealer his remaining cards and then check scores with winner function
+    if(this.endGameBoolean === true){
+
+      // make second dealer card face up
+
+      $("#hit").off('click');
+      $("#stick").off('click')
+
+      while (dealerHand.totalScore() < 17 && dealerHand.cardCount() < 5 && playerHand.totalScore() <= 21) {
+        var dNewCard = $("<div class='card'></div>");
+        var dHitCardIndex = newDeck.dealCard();
+        var dHitCard = dHitCardIndex.getName();
+        var dHitCardScore = dHitCardIndex.getValue();
+        dealerHand.addCard(dHitCardScore);
+        dNewCard.append('<img src="assets/images/' + dHitCard + '.png" width="130" height="180" />');
+        dNewCard.appendTo(dealers);
+        }
+      this.winner();
+    }
+    this.winner = function() {
+      var playerScore = playerHand.totalScore();
+      var dealerScore = dealerHand.totalScore();
+      this.outcome = "";
+      if (playerScore > 21 || dealerScore === 21) {
+        this.outcome = "You lose!";
+      }
+      else if (playerScore <= 21 && playerHand.cardCount() === 5) {
+        this.outcome = "5 card trick! You win!";
+      }
+      else if (dealerScore > 21 || playerScore === 21 || playerScore > dealerScore) {
+        this.outcome = "You win!"
+      }
+      else if (playerScore < dealerScore) {
+        this.outcome = "You lose!";
+      }
+      else if (playerScore === dealerScore) {
+        this.outcome = "It's a tie!";
+      }else{
+        this.outcome = "Thanks for playing";
+      }
+      $("#deal").on('click', function() {
+         location.reload();
+      });
+      $("#outcome").append(this.outcome);
+    }
+  };
+}
