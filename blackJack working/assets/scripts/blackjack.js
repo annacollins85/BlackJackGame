@@ -79,7 +79,6 @@ var Deck = function() {
       number = (i % 13) +1;
       this.deckIndex.push(new Card(suit,number));
     }
-    // console.log(this.deckIndex);
     return this.deckIndex;
   }
 
@@ -124,9 +123,7 @@ var Hand = function(elementID) {
     } else {
       cardScores.push(newCard);
     }
-
   };
-
 };
 
 /*After each deal and each hit, checkForEndGame.gameRules(new endGame). gameRules
@@ -141,14 +138,6 @@ var initilize = function() {
   newDeck.createDeck();
   playerHand = new Hand();
   dealerHand = new Hand();
-
-  //Clear the game board
-  $("#playerCard1").empty();
-  $("#playerCard2").empty();
-  $("#dealerCard1").empty();
-  $("#dealerCard2").empty();
-  //pNewCard.empty();
-  //dNewCard.empty();
 
 
   var playerCardIndex1 = newDeck.dealCard();
@@ -173,7 +162,6 @@ var initilize = function() {
   $("#dealerCard2").append('<img src="assets/images/' + dealerCard2 + '.png" width="130" height="180" />');
   $("#deal").off('click');
   gameRules.checkForEndGame();
-  //gameRules.gameResult();
 };
 
 var endGame = function() {
@@ -192,7 +180,6 @@ var endGame = function() {
       this.setGameOver(); //If player has over 21, set endGameBoolean to true
     }
     gameRules.gameResult();
-    //return this.endGameBoolean;
   };
 
   this.gameResult = function(){
@@ -239,11 +226,9 @@ var endGame = function() {
       }
       $("#deal").on('click', function() {
          location.reload();
-         //initilize();
       });
       $("#outcome").append(this.outcome);
 
-      //return this.outcome;
       //Then print the outcome to the page and disable hit and stand button.
       //Player has to click deal to start the game again.
     }
@@ -280,12 +265,10 @@ $(document).ready(function() {
     pNewCard.append('<img src="assets/images/' + hitCard + '.png" width="130" height="180" />');
     pNewCard.appendTo(players);
     gameRules.checkForEndGame();
-    //gameRules.gameResult();
   });
 
   $("#stick").on('click', function() {
     gameRules.setGameOver();
     gameRules.checkForEndGame();
-    //gameRules.gameResult();
   });
 });
