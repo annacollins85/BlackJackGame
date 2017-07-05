@@ -88,9 +88,9 @@ var Deck = function() {
 };
 
 var Hand = function() {
-  //var elementID = elementID;
 
   var cardScores = [];
+
   this.getHand = function() {
     return cardScores;
   };
@@ -129,38 +129,6 @@ i.e. if any of the conditions hold, the player is unable to hit anymore and
 go straight to outcome of game.
 */
 
-var initilize = function() {
-
-  gameRules = new endGame();
-  newDeck.createDeck();
-  playerHand = new Hand();
-  dealerHand = new Hand();
-
-
-  var playerCardIndex1 = newDeck.dealCard();
-  var playerCard1 = playerCardIndex1.getName();
-  var pCard1Score = playerCardIndex1.getValue();
-  playerHand.addCard(pCard1Score);
-  var dealerCardIndex1 = newDeck.dealCard();
-  var dealerCard1 = dealerCardIndex1.getName();
-  var dCard1Score = dealerCardIndex1.getValue();
-  dealerHand.addCard(dCard1Score);
-  var playerCardIndex2 = newDeck.dealCard();
-  var playerCard2 = playerCardIndex2.getName();
-  var pCard2Score = playerCardIndex2.getValue();
-  playerHand.addCard(pCard2Score);
-  var dealerCardIndex2 = newDeck.dealCard();
-  var dealerCard2 = dealerCardIndex2.getName();
-  var dCard2Score = dealerCardIndex2.getValue();
-  dealerHand.addCard(dCard2Score);
-  $("#playerCard1").append('<img src="assets/images/' + playerCard1 + '.png" width="130" height="180" />');
-  $("#playerCard2").append('<img src="assets/images/' + playerCard2 + '.png" width="130" height="180" />');
-  $("#dealerCard1").append('<img src="assets/images/' + dealerCard1 + '.png" width="130" height="180" />');
-  $("#dealerCard2").append('<img src="assets/images/' + dealerCard2 + '.png" width="130" height="180" />');
-  $("#deal").off('click');
-  gameRules.checkForEndGame();
-};
-
 $(document).ready(function() {
 
   $("#deal").hover(function() {
@@ -172,10 +140,40 @@ $(document).ready(function() {
       $("#stick").hover(function() {
         $(this).css('cursor','pointer');
     });
+
   newDeck = new Deck();
 
   $("#deal").on('click', function() {
-    initilize();
+
+    gameRules = new endGame();
+    newDeck.createDeck();
+    playerHand = new Hand();
+    dealerHand = new Hand();
+
+    var playerCardIndex1 = newDeck.dealCard();
+    var playerCard1 = playerCardIndex1.getName();
+    var pCard1Score = playerCardIndex1.getValue();
+    playerHand.addCard(pCard1Score);
+    var dealerCardIndex1 = newDeck.dealCard();
+    var dealerCard1 = dealerCardIndex1.getName();
+    var dCard1Score = dealerCardIndex1.getValue();
+    dealerHand.addCard(dCard1Score);
+    var playerCardIndex2 = newDeck.dealCard();
+    var playerCard2 = playerCardIndex2.getName();
+    var pCard2Score = playerCardIndex2.getValue();
+    playerHand.addCard(pCard2Score);
+    var dealerCardIndex2 = newDeck.dealCard();
+    var dealerCard2 = dealerCardIndex2.getName();
+    var dCard2Score = dealerCardIndex2.getValue();
+    dealerHand.addCard(dCard2Score);
+
+    $("#playerCard1").append('<img src="assets/images/' + playerCard1 + '.png" width="130" height="180" />');
+    $("#playerCard2").append('<img src="assets/images/' + playerCard2 + '.png" width="130" height="180" />');
+    $("#dealerCard1").append('<img src="assets/images/' + dealerCard1 + '.png" width="130" height="180" />');
+    $("#dealerCard2").append('<img src="assets/images/' + dealerCard2 + '.png" width="130" height="180" />');
+    $("#deal").off('click');
+
+    gameRules.checkForEndGame();
   });
   // Make it so that once the deal button has been clicked, it cannot be clicked again until
   //there is an outcome for the game. Also that the hit and stick buttons can only be pressed
@@ -187,6 +185,7 @@ $(document).ready(function() {
     var hitCardIndex = newDeck.dealCard();
     var hitCard = hitCardIndex.getName();
     var hitCardScore = hitCardIndex.getValue();
+
     playerHand.addCard(hitCardScore);
     pNewCard.append('<img src="assets/images/' + hitCard + '.png" width="130" height="180" />');
     pNewCard.appendTo(players);
