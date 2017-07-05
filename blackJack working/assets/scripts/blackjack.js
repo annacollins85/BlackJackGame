@@ -87,8 +87,8 @@ var Deck = function() {
   }
 };
 
-var Hand = function(elementID) {
-  var elementID = elementID;
+var Hand = function() {
+  //var elementID = elementID;
 
   var cardScores = [];
   this.getHand = function() {
