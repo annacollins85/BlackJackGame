@@ -136,10 +136,21 @@ go straight to outcome of game.
 */
 
 var initilize = function() {
+
   gameRules = new endGame();
   newDeck.createDeck();
   playerHand = new Hand();
   dealerHand = new Hand();
+
+  //Clear the game board
+  $("#playerCard1").empty();
+  $("#playerCard2").empty();
+  $("#dealerCard1").empty();
+  $("#dealerCard2").empty();
+  //pNewCard.empty();
+  //dNewCard.empty();
+
+
   var playerCardIndex1 = newDeck.dealCard();
   var playerCard1 = playerCardIndex1.getName();
   var pCard1Score = playerCardIndex1.getValue();
@@ -160,9 +171,9 @@ var initilize = function() {
   $("#playerCard2").append('<img src="assets/images/' + playerCard2 + '.png" width="130" height="180" />');
   $("#dealerCard1").append('<img src="assets/images/' + dealerCard1 + '.png" width="130" height="180" />');
   $("#dealerCard2").append('<img src="assets/images/' + dealerCard2 + '.png" width="130" height="180" />');
-  $("#deal").off();
+  $("#deal").off('click');
   gameRules.checkForEndGame();
-  gameRules.gameResult();
+  //gameRules.gameResult();
 };
 
 var endGame = function() {
@@ -180,7 +191,7 @@ var endGame = function() {
     } else if (playerHand.cardCount() >= 5) {
       this.setGameOver(); //If player has over 21, set endGameBoolean to true
     }
-
+    gameRules.gameResult();
     //return this.endGameBoolean;
   };
 
@@ -201,9 +212,8 @@ var endGame = function() {
         dealerHand.addCard(dHitCardScore);
         dNewCard.append('<img src="assets/images/' + dHitCard + '.png" width="130" height="180" />');
         dNewCard.appendTo(dealers);
-        this.winner();
-
-      }
+        }
+      this.winner();
     }
     this.winner = function() {
       //The function is to compare the score of the two hands and determine who won the game
@@ -224,13 +234,16 @@ var endGame = function() {
       }
       else if (playerScore === dealerScore) {
         this.outcome = "It's a tie!";
+      }else{
+        this.outcome = "Thanks for playing";
       }
-      //$("#deal").on('click', function() {
-      //  initilize();
-      //});
+      $("#deal").on('click', function() {
+         location.reload();
+         //initilize();
+      });
       $("#outcome").append(this.outcome);
 
-      return this.outcome;
+      //return this.outcome;
       //Then print the outcome to the page and disable hit and stand button.
       //Player has to click deal to start the game again.
     }
@@ -267,12 +280,12 @@ $(document).ready(function() {
     pNewCard.append('<img src="assets/images/' + hitCard + '.png" width="130" height="180" />');
     pNewCard.appendTo(players);
     gameRules.checkForEndGame();
-    gameRules.gameResult();
+    //gameRules.gameResult();
   });
 
   $("#stick").on('click', function() {
     gameRules.setGameOver();
-    gameRules.gameResult();
+    gameRules.checkForEndGame();
+    //gameRules.gameResult();
   });
-
 });
