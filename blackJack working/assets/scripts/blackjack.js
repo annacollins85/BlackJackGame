@@ -176,12 +176,12 @@ var endGame = function() {
   this.checkForEndGame = function() {
     //This function is to check if any game ending conditions have been met and end the game if they have
     if (playerHand.totalScore() >= 21) {
-      this.endGameBoolean = true;  //If player has less than or equal 21 and player has 5 cards, set endGameBoolean to true
+      this.setGameOver();  //If player has less than or equal 21 and player has 5 cards, set endGameBoolean to true
     } else if (playerHand.cardCount() >= 5) {
-      this.endGameBoolean = true; //If player has over 21, set endGameBoolean to true
+      this.setGameOver(); //If player has over 21, set endGameBoolean to true
     }
 
-    return this.endGameBoolean;
+    //return this.endGameBoolean;
   };
 
   this.gameResult = function(){
