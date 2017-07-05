@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="https://fonts.googleapis.com/css?family=Righteous" type="text/css" rel="stylesheet" >
+	<link href="assets/styles/style.css" type="text/css" rel="stylesheet"/>
+	<title>blackJack</title>
+</head>
+<body>
+	<h1>javaScript blackJack</h1>
+	<div class="game-controls">
+		<ul>
+			<li id="deal">Deal</li>
+			<li id="hit">Hit</li>
+			<li id="stick">Stick</li>
+		</ul>
+		<div>
+			<a href="howtoplay.html">How to play </a>
+		</div>
+	</div>
+	<div id="game-table">
+			<div id="outcome"></div>
+		<div id="dealer-game-table">
+			<div id="cards" class="game-cards">
+				<div id="dealer">Dealers Cards</div>
+				<ul id="dealers">
+					<li id= "dealerCard1" class="card"></li>
+					<li id="dealerCard2" class="card"></li>
+				</ul>
+			</div>
+		</div>
+		<div id="player-game-table">
+			<div id="cards" class="game-cards">
+				<div id="player" >Players Cards</div>
+				<ul id="players">
+					<li id="playerCard1" class="card"></li>
+					<li id="playerCard2" class="card"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="assets/scripts/blackjack.js"></script>
+</body>
+</html>

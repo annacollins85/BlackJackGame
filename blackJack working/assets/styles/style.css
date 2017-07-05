@@ -1,0 +1,93 @@
+body {
+  background: radial-gradient(circle, green, black);
+  padding: 20px 60px;
+}
+
+h1 {
+  font-family: 'Righteous', sans-serif;
+  font-size: 64px;
+  text-align: center;
+}
+
+p, a {
+  font-family: 'Righteous', sans-serif;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+  min-width: 200px;
+  max-width: 800px;
+  margin: auto;
+}
+
+a {
+  color: white;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  font-family: 'Righteous', sans-serif;
+  font-size: 64px;
+  color: #800000;
+  list-style: none;
+  border-style: groove;
+  width: 160px;
+  border-color: #556B2F;
+  border-radius: 20px;
+}
+
+#player, #dealer {
+  font-family: 'Righteous', sans-serif;
+  font-size: 20px;
+  color: #800000;
+}
+
+#outcome {
+  font-family: 'Righteous', sans-serif;
+  font-size: 30px;
+  color: black;
+  z-index: 100px;
+
+}
+
+/*#dealer {
+  font-family: 'Righteous', sans-serif;
+  font-size: 20px;
+  color: #800000;
+}
+
+#outcome {
+  font-family: 'Righteous', sans-serif;
+  font-size: 20px;
+  color: #800000;
+}
+*/
+#game-table {
+  width: 700px;
+  float: right;
+  padding: 0 50px;
+}
+
+#player-game-table, #dealer-game-table {
+  width: 700px;
+  float: right;
+  padding: 0 50px;
+}
+
+.card {
+  height: 180px;
+  width: 130px;
+  border-radius: 10px;
+  border-style: groove;
+  float: left;
+}
+
+.game-controls {
+  float: left;
+}
+
+.game-cards {
+  float: left;
+}
